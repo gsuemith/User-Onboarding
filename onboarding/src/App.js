@@ -15,58 +15,82 @@ const initialFormValues = {
   password: '',
   tos: false
 }
+const initialFormErrors = {
+  username: '',
+  email: '',
+  role: '',
+  civil: '',
+}
 
 
 function App() {
   // State Hooks
   const [users, setUsers] = useState([])
   const [formValues, setFormValues] = useState(initialFormValues)
+  const [formErrors, setFormErrors] = useState(initialFormErrors)
+  const [disabled, setDisabled] = useState(true)
 
   // axios call
-  // useEffect(() => {
-  //   const newUser = {
-  //     name: 'George Bluth',
-  //     email: 'arrested@development.com'
-  //   }
-  //   axios.post('https://reqres.in/api/users', newUser)
-  //     .then(res => {
-  //       console.log(res)
-  //     })
-  //     .catch(err => 
-  //       console.log("Axios Call Error:", err)
-  //     )
-  // }, [])
-
-  // useEffect(() => {
-  //   axios.get('https://reqres.in/api/users')
-  //     .then(res => {
-  //       console.log(res)
-  //     })
-  //     .catch(err => 
-  //       console.log("Axios Call Error:", err)
-  //     )
-
-  // }, [])
+  const postNewUser = newUser => {
+       axios.post('https://reqres.in/api/users', newUser)
+      .then(res => {
+        console.log(res)
+        setUsers([res.data, ...users])
+      })
+      .catch(err => 
+        console.log("Axios Call Error:", err)
+      )
+  }
 
   ////Event Handlers///
   const inputChange = (name, value) => {
+    yup.reach(schema, name)
+      .validate(value)
+      .then(valid => {
+        setFormErrors({
+          ...formErrors, [name]: ""
+        })
+      })
+      .catch(err => {
+        setFormErrors({
+          ...formErrors, [name]: err.errors[0]
+        })
+      })
+
     setFormValues({...formValues, [name]: value})
   };
 
 
   const formSubmit = () => {
-
+    
+    const newUser = {
+      name: formValues.name,
+      email: formValues.email,
+      password: formValues.password
+    }
+    console.log(newUser)
+    postNewUser(newUser)
   };
+
+  //Enable Submit
+  useEffect(() => {
+    schema.isValid(formValues)
+      .then(valid => {
+        setDisabled(!valid)
+      })
+  }, [formValues])
 
   return (
     <div className="App">
       <Form values={formValues}
         change={inputChange}
-        submit={formSubmit}  
+        submit={formSubmit} 
+        errors={formErrors}
+        disabled={disabled} 
       />
 
       <div className="user-list">
-        {users.map(user => <h4>user.name</h4>)}
+        {users.map(user => <h4 key={user.id}>{user.name}</h4>)}
       </div>      
     </div>
   );

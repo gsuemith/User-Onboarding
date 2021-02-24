@@ -6,12 +6,15 @@ const schema = yup.object().shape({
         .required("Must enter a name"),
     email: yup
         .string()
-        .email(),
+        .email()
+        .required("Please enter an email"),
     password: yup
-        .string(),
+        .string()
+        .min(12, "minimum 12 characters")
+        .required("Please enter a password"),
     tos: yup
         .boolean()
-        .oneOf([true])
+        .oneOf([true], "You must agree to TOS")
 })
 
 export default schema
