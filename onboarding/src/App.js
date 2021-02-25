@@ -13,13 +13,16 @@ const initialFormValues = {
   name: '',
   email: '',
   password: '',
+  password2: '',
+  role: '',
   tos: false
 }
 const initialFormErrors = {
   username: '',
   email: '',
+  password: '',
   role: '',
-  civil: '',
+  tos: '',
 }
 
 
@@ -36,6 +39,7 @@ function App() {
       .then(res => {
         console.log(res)
         setUsers([res.data, ...users])
+        schema.fields.email._blacklist.list.add(res.data.email)
       })
       .catch(err => 
         console.log("Axios Call Error:", err)
@@ -44,6 +48,8 @@ function App() {
 
   ////Event Handlers///
   const inputChange = (name, value) => {
+    // schema.fields.email._blacklist.list.add(value)
+    // console.log(schema.fields)
     yup.reach(schema, name)
       .validate(value)
       .then(valid => {
@@ -72,7 +78,7 @@ function App() {
     postNewUser(newUser)
   };
 
-  //Enable Submit
+  //Enable Submit when schema is valid
   useEffect(() => {
     schema.isValid(formValues)
       .then(valid => {
@@ -90,7 +96,7 @@ function App() {
       />
 
       <div className="user-list">
-        {users.map(user => <h4 key={user.id}>{user.name}</h4>)}
+        {users.map(user => <h4 key={user.id}>{user.name} id:{user.id}</h4>)}
       </div>      
     </div>
   );

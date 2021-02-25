@@ -23,6 +23,10 @@ label {
   justify-content: space-between;
 }
 
+.age-selection label {
+  display: inline
+}
+
 .user-list{
   text-align: justify;
 }
