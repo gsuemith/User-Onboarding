@@ -57,7 +57,7 @@ const Form = ({ values, change, submit, errors, disabled }) => {
             
             <label>
                 Membership Tier:
-                <select>
+                <select className="membership-menu">
                     <option name="role"value=''>--- Select a Tier ---</option>
                     <option name="role" value="member">Member $20</option>
                     <option name="role" value="sponsor">Sponsor $5/mo.</option>
