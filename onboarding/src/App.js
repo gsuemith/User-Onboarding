@@ -41,6 +41,7 @@ function App() {
       .then(res => {
         console.log(res)
         setUsers([res.data, ...users])
+        setFormValues(initialFormValues)
         schema.fields.email._blacklist.list.add(res.data.email)
       })
       .catch(err => 

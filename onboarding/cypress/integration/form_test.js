@@ -26,6 +26,7 @@ describe('Onboarding app', () => {
     const adultRadioButton = () => cy.get('#adult')
     const seniorRadioButton = () => cy.get('#senior')
     const tosAgreement = () => cy.get('input[name=tos]')
+    const submitButton = () => cy.get('button')
 
     it('clicking', () => {
         membershipDropdown().select('sponsor')
@@ -42,5 +43,13 @@ describe('Onboarding app', () => {
         membershipDropdown().select('superfan')
         adultRadioButton().click()
         tosAgreement().click()
+        submitButton().click()
+        cy.contains('Test U. Ser')
+
+        //check if clear
+        nameField().should('have.value', '')
+        emailField().should('have.value', '')
+        passwordField().should('have.value', '')
+        membershipDropdown().should('have.value', '')
     })
 })

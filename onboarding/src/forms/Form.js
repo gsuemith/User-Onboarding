@@ -59,6 +59,7 @@ const Form = ({ values, change, submit, errors, disabled }) => {
                 Membership Tier:
                 <select className="membership-menu" 
                     name="role" 
+                    value={values.role}
                     onChange={onChange}
                 >
                     <option value=''>--- Select a Tier ---</option>
@@ -77,6 +78,7 @@ const Form = ({ values, change, submit, errors, disabled }) => {
                         name="age" 
                         id="minor" 
                         value="minor"
+                        checked={values.age === 'minor'}
                         onChange={onChange}
                     />   
                     <label htmlFor="minor">Under 18</label>
@@ -86,6 +88,7 @@ const Form = ({ values, change, submit, errors, disabled }) => {
                         name="age" 
                         id="adult" 
                         value="adult"
+                        checked={values.age === 'adult'}
                         onChange={onChange}
                     />   
                     <label htmlFor="adult">18-64</label>
@@ -95,6 +98,7 @@ const Form = ({ values, change, submit, errors, disabled }) => {
                         name="age" 
                         id="senior" 
                         value="senior"
+                        checked={values.age === 'senior'}
                         onChange={onChange}
                     />   
                     <label htmlFor="senior">65 or older</label>
@@ -111,7 +115,7 @@ const Form = ({ values, change, submit, errors, disabled }) => {
                 />
             </label>
 
-            <button disabled={disabled}>Submit</button>
+            <button id="addUserButton" disabled={disabled}>Submit</button>
         </form>
     )
 }
