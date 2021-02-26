@@ -13,14 +13,14 @@ const schema = yup.object().shape({
         .string()
         .min(12, "minimum 12 characters")
         .required("Please enter a password"),
-    password2: yup
-        .string()
-        .required()
-        // .test('passwords-match', 'Passwords must match', value => {
-        //     console.log(yup.ref('password'))       
-        //     return yup.ref('password') === value     
-        // })
-        ,
+    // password2: yup
+    //     .string()
+    //     .required()
+    //     // .test('passwords-match', 'Passwords must match', value => {
+    //     //     console.log(yup.ref('password'))       
+    //     //     return yup.ref('password') === value     
+    //     // })
+    //     ,
     role: yup
         .string()
         .oneOf(['member', 'fan', 'superfan', 'sponsor', 'patron'])

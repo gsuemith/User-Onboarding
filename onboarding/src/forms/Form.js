@@ -45,7 +45,7 @@ const Form = ({ values, change, submit, errors, disabled }) => {
                 />
             </label>
 
-            <label>
+            {/* <label>
                 Confirm Password: {errors.password2}
                 <input 
                     type="text"
@@ -53,32 +53,50 @@ const Form = ({ values, change, submit, errors, disabled }) => {
                     value={values.password2}
                     onChange={onChange}
                 />
-            </label>
+            </label> */}
             
             <label>
                 Membership Tier:
-                <select className="membership-menu">
-                    <option name="role"value=''>--- Select a Tier ---</option>
-                    <option name="role" value="member">Member $20</option>
-                    <option name="role" value="sponsor">Sponsor $5/mo.</option>
-                    <option name="role" value="fan">Fan $10/mo.</option>
-                    <option name="role" value="superfan">Super Fan $20/mo.</option>
-                    <option name="role" value="patron">Patron $500</option>
+                <select className="membership-menu" 
+                    name="role" 
+                    onChange={onChange}
+                >
+                    <option value=''>--- Select a Tier ---</option>
+                    <option value="member">Member $20</option>
+                    <option value="sponsor">Sponsor $5/mo.</option>
+                    <option value="fan">Fan $10/mo.</option>
+                    <option value="superfan">Super Fan $20/mo.</option>
+                    <option value="patron">Patron $500</option>
                 </select>
             </label>
 
             <label>
                 Age:
                 <div className="age-selection">
-                    <input type="radio" name="age" id="minor" value="minor"/>   
+                    <input type="radio" 
+                        name="age" 
+                        id="minor" 
+                        value="minor"
+                        onChange={onChange}
+                    />   
                     <label htmlFor="minor">Under 18</label>
                 </div>
                 <div className="age-selection">
-                    <input type="radio" name="age" id="adult" value="adult"/>   
+                    <input type="radio" 
+                        name="age" 
+                        id="adult" 
+                        value="adult"
+                        onChange={onChange}
+                    />   
                     <label htmlFor="adult">18-64</label>
                 </div>
                 <div className="age-selection">
-                    <input type="radio" name="age" id="senior" value="senior"/>   
+                    <input type="radio" 
+                        name="age" 
+                        id="senior" 
+                        value="senior"
+                        onChange={onChange}
+                    />   
                     <label htmlFor="senior">65 or older</label>
                 </div>
             </label>

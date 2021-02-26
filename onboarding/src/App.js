@@ -13,8 +13,9 @@ const initialFormValues = {
   name: '',
   email: '',
   password: '',
-  password2: '',
+  // password2: '',
   role: '',
+  age: '',
   tos: false
 }
 const initialFormErrors = {
@@ -22,6 +23,7 @@ const initialFormErrors = {
   email: '',
   password: '',
   role: '',
+  age: '',
   tos: '',
 }
 
@@ -82,6 +84,7 @@ function App() {
   useEffect(() => {
     schema.isValid(formValues)
       .then(valid => {
+        console.log(valid, formValues)
         setDisabled(!valid)
       })
   }, [formValues])

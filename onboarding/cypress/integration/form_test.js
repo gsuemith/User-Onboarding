@@ -18,6 +18,9 @@ describe('Onboarding app', () => {
         expect({}).to.eql({})
     })
 
+    const nameField = () => cy.get('input[name=name]')
+    const emailField = () => cy.get('input[name=email]')
+    const passwordField = () => cy.get('input[name="password"]')
     const membershipDropdown = () => cy.get('select.membership-menu')
     const under18RadioButton = () => cy.get('#minor')
     const adultRadioButton = () => cy.get('#adult')
@@ -29,6 +32,15 @@ describe('Onboarding app', () => {
         under18RadioButton().click()
         adultRadioButton().click()
         seniorRadioButton().click()
+        tosAgreement().click()
+    })
+
+    it.only('can add a user', () => {
+        nameField().type('Test U. Ser')
+        emailField().type('test@user.com')
+        passwordField().type('thisisapassword')
+        membershipDropdown().select('superfan')
+        adultRadioButton().click()
         tosAgreement().click()
     })
 })
