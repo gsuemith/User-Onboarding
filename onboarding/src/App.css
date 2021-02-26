@@ -1,0 +1,32 @@
+.App {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+  background-image: linear-gradient(to right, grey , lightblue);
+  text-align: center;
+}
+
+form, .user-list {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 3px 3px 10px -3px;
+  width: 50%;
+  margin: 2em;
+  padding: 2em;
+}
+
+label {
+  display: flex;
+  padding-bottom: 1em;
+  justify-content: space-between;
+}
+
+.age-selection label {
+  display: inline
+}
+
+.user-list{
+  text-align: justify;
+}
